@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.UsuarioEntity;
 import com.example.demo.service.UsuarioService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class UsuarioController {
@@ -33,5 +35,22 @@ public class UsuarioController {
 		usuarioService.crearUsuario(usuarioEntity, model, foto);
 		
 		return "registrar_usuario";
+	}
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("usuario", new UsuarioEntity());
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String login(UsuarioEntity usuarioEntitiy, Model model, HttpSession session) {
+		boolean usuarioValido = usuarioService.validarUsuario(usuarioEntitiy,session);
+		if(usuarioValido) {
+			return "redirect:/menu";
+		}
+		model.addAttribute("loginInvalido","No existe el usuario");
+		model.addAttribute("usuario", new UsuarioEntity());
+		return "login";
 	}
 }

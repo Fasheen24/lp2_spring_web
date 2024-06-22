@@ -43,10 +43,22 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public boolean validarUsuario(UsuarioEntity usuarioEntity, HttpSession session) {
-		// TODO Auto-generated method stub
-		return false;
+		UsuarioEntity usuarioEncontradoPorCorreo = usuarioRepository.
+				findById(usuarioEntity.getCorreo()).get();
+		// Correo existe?
+		if(usuarioEncontradoPorCorreo == null) {
+			return false;
+		}
+		//validar si el pasword input hace match con password es correcto de base de datos
+		if (!Utilitarios.checkPassword(usuarioEntity.getPassword(), usuarioEncontradoPorCorreo.getPassword() )) {
+			return false;
+		}	
+		session.setAttribute("usuario", usuarioEncontradoPorCorreo.getCorreo());
+		
+		
+		return true;
 	}
-
+	
 	@Override
 	public UsuarioEntity buscarUsuarioPorCorreo(String correo) {
 		// TODO Auto-generated method stub
@@ -54,3 +66,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 }
+
+
+
