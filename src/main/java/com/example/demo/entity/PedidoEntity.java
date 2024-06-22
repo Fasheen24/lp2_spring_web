@@ -19,7 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name= "tb_pedido")
+@Table(name = "tb_pedido")
 @Getter
 @Setter
 @ToString
@@ -34,7 +34,7 @@ public class PedidoEntity {
 	private LocalDate fechaCompra;
 	
 	@ManyToOne
-	@JoinColumn(name="usuario_id", nullable = false)
+	@JoinColumn(name = "usuario_id", nullable = false)
 	private UsuarioEntity usuarioEntity;
 	
 	@OneToMany(mappedBy = "pedidoEntity", cascade = CascadeType.ALL)

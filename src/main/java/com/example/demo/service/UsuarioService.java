@@ -10,8 +10,7 @@ import com.example.demo.entity.UsuarioEntity;
 
 
 public interface UsuarioService {
-	void crearUsario(UsuarioEntity usuarioEntity, Model model, MultipartFile foto);
+	void crearUsuario(UsuarioEntity usuarioEntity, Model model, MultipartFile foto);
 	boolean validarUsuario(UsuarioEntity usuarioEntity, HttpSession session);
 	UsuarioEntity buscarUsuarioPorCorreo(String correo);
-
 }
