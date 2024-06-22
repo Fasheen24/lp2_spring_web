@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.entity.UsuarioEntity;
 import com.example.demo.service.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,7 +21,9 @@ public class ProductoController {
 			return "redirect:/";
 			
 		}
-		
+		String correo = session.getAttribute("usuario").toString();
+		UsuarioEntity usuarioEntity = usuarioService.buscarUsuarioPorCorreo(correo);
+		model.addAttribute("foto", usuarioEntity.getPassword());
 		return "menu";
 	}
 }
