@@ -1,4 +1,7 @@
+
 package com.example.demo.controller;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.UsuarioEntity;
 import com.example.demo.service.UsuarioService;
 
-import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -31,7 +33,6 @@ public class UsuarioController {
 	public String registrarUsuario(UsuarioEntity usuarioEntity, Model model, 
 			@RequestParam("foto")MultipartFile foto) {
 		
-		
 		usuarioService.crearUsuario(usuarioEntity, model, foto);
 		
 		return "registrar_usuario";
@@ -44,20 +45,43 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/login")
-	public String login(UsuarioEntity usuarioEntitiy, Model model, HttpSession session) {
-		boolean usuarioValido = usuarioService.validarUsuario(usuarioEntitiy,session);
+	public String login(UsuarioEntity usuarioEntity, Model model, HttpSession session) {
+		boolean usuarioValido = usuarioService.validarUsuario(usuarioEntity, session);
 		if(usuarioValido) {
 			return "redirect:/menu";
 		}
-		model.addAttribute("loginInvalido","No existe el usuario");
+		model.addAttribute("loginInvalido", "No existe el usuario");
 		model.addAttribute("usuario", new UsuarioEntity());
 		return "login";
 	}
+	
 	@GetMapping("/logout")
-	public String logout(HttpSession session ) {
+	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+

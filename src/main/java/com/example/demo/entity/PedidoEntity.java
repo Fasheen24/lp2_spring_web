@@ -27,6 +27,26 @@ import lombok.ToString;
 @NoArgsConstructor
 public class PedidoEntity {
 	
+	
+	
+	
+	public PedidoEntity() {
+		super();
+	}
+
+	
+	
+	public PedidoEntity(Long pedidoId, LocalDate fechaCompra, UsuarioEntity usuarioEntity,
+			List<DetallePedidoEntity> detallePedido) {
+		super();
+		this.pedidoId = pedidoId;
+		this.fechaCompra = fechaCompra;
+		this.usuarioEntity = usuarioEntity;
+		this.detallePedido = detallePedido;
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long pedidoId;
@@ -39,5 +59,54 @@ public class PedidoEntity {
 	
 	@OneToMany(mappedBy = "pedidoEntity", cascade = CascadeType.ALL)
 	private List<DetallePedidoEntity>detallePedido;
+
+	public Long getPedidoId() {
+		return pedidoId;
+	}
+
+
+
+	public void setPedidoId(Long pedidoId) {
+		this.pedidoId = pedidoId;
+	}
+
+
+
+	public LocalDate getFechaCompra() {
+		return fechaCompra;
+	}
+
+
+
+	public void setFechaCompra(LocalDate fechaCompra) {
+		this.fechaCompra = fechaCompra;
+	}
+
+
+
+	public UsuarioEntity getUsuarioEntity() {
+		return usuarioEntity;
+	}
+
+
+
+	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
+		this.usuarioEntity = usuarioEntity;
+	}
+
+
+
+	public List<DetallePedidoEntity> getDetallePedido() {
+		return detallePedido;
+	}
+
+
+
+	public void setDetallePedido(List<DetallePedidoEntity> detallePedido) {
+		this.detallePedido = detallePedido;
+	}
+	
+	
+
 
 }

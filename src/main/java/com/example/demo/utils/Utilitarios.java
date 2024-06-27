@@ -9,6 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Utilitarios {
+
 	public static String guardarImagen(MultipartFile foto) {
 		try {
 			Path pathDire = Paths.get("src/main/resources/static/usuario_foto/");
@@ -32,9 +33,10 @@ public class Utilitarios {
 		return BCrypt.hashpw(passwordInput, BCrypt.gensalt());
 	}
 	
-	public static boolean checkPassword(String passwordInput, String hashPassword) 
-	{
+	
+	public static boolean checkPassword(String passwordInput, String hashPassword) {
 		return BCrypt.checkpw(passwordInput, hashPassword);
 	}
+	
 	
 }
